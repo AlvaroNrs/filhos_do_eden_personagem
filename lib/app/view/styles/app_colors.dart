@@ -9,5 +9,7 @@ class AppColors {
   static const Color baseThemeColor = Color.fromARGB(255, 255, 253, 249);
   static const Color neutralThemeColor = Color.fromARGB(255, 233, 217, 199);
   static const Color celestialThemeColor = Color.fromARGB(255, 199, 233, 233);
+  static const Color darkCelestialThemeColor = Color.fromARGB(255, 38, 71, 106);
   static const Color infernalThemeColor = Color.fromARGB(255, 239, 175, 148);
+  static const Color darkInfernalThemeColor = Color(0x00a54218);
 }
