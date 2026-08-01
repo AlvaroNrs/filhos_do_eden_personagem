@@ -28,6 +28,4 @@ class Character {
       CharacterTypeCatalog.classes[type]!;
   StrainDefinition get strainDefinition =>
     StrainCatalog.strains[selectedStrain]!;
-  PowerDefinition get powerDefinition =>
-    PowerCatalog.powers[currentPowers]!;
 }

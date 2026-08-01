@@ -38,7 +38,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  
+  flutter_launcher_icons: "^0.14.4"
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -51,6 +52,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  assets:
+    - assets/sheet/
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -58,9 +61,14 @@ flutter:
   uses-material-design: true
 
   fonts:
-    - family: Eremaeus
-      fonts:
-        - asset: fonts/EremaeusRegular.otf
+  - family: Eremaeus
+    fonts:
+      - asset: fonts/EremaeusRegular.otf
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/app_icon.png" # Ajuste para o nome real do seu arquivo
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

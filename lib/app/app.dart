@@ -8,11 +8,8 @@ class FilhosDoEdenPersonagem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Filhos do Èden Personagem',
+      title: 'Filhos do Éden Personagem',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-      ),
       home: const NavigatorStart(),
     );
   }

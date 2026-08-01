@@ -1,4 +1,5 @@
 import 'package:filhos_do_eden_personagem/app/view/styles/app_colors.dart';
+import 'package:filhos_do_eden_personagem/app/view/widgets/buttons/custom_text_button.dart';
 import 'package:filhos_do_eden_personagem/app/view_model/theme_view_model.dart';
 import 'package:flutter/material.dart';
 
@@ -18,14 +19,7 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextButton(
-                style: ButtonStyle(
-                ),
-                onPressed: updateTheme,
-                child: Text("Trocar Tema".toUpperCase(),
-                  style: TextStyle(fontFamily: 'Eremaeus'),
-                )
-              )
+              CustomTextButton(text: "Trocar Tema", onPressed: updateTheme)
             ],
           ),
         ),
