@@ -1,3 +1,7 @@
+import 'package:filhos_do_eden_personagem/app/model/character.dart';
+import 'package:filhos_do_eden_personagem/app/shared/enums/character_type.dart';
+import 'package:filhos_do_eden_personagem/app/shared/enums/strain.dart';
+import 'package:filhos_do_eden_personagem/app/view/pages/created_characters_page.dart';
 import 'package:filhos_do_eden_personagem/app/view/pages/home_page.dart';
 import 'package:filhos_do_eden_personagem/app/view/styles/app_colors.dart';
 import 'package:filhos_do_eden_personagem/app/view_model/theme_view_model.dart';
@@ -13,10 +17,23 @@ class NavigatorStart extends StatefulWidget {
 class _NavigatorStartState extends State<NavigatorStart> {
   final themeViewModel = ThemeViewModel();
   int currentIndex = 0;
+  List<Character> charactersList = [
+    Character(id: "1", name: "Azrael", type: CharacterType.querubim,
+      selectedStrain: Strain.legionario),
+    Character(id: "2", name: "Meu Advogado", type: CharacterType.baal,
+      selectedStrain: Strain.negociante),
+  ];
 
   late final List<Widget> _pages = [
-    HomePage(themeViewModel: themeViewModel),
+    HomePage(themeViewModel: themeViewModel, updateIndex: updateIndex),
+    CreatedCharactersPage(updateIndex: updateIndex, charactersList: charactersList,)
   ];
+
+  void updateIndex(int newIndex){
+    setState(() {
+      currentIndex = newIndex;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +58,12 @@ class _NavigatorStartState extends State<NavigatorStart> {
             child: child,
           );
         },
-        child: _pages.elementAt(currentIndex),
+        child: Center(
+          child: Padding(
+            padding: EdgeInsetsGeometry.symmetric(vertical: 12),
+            child: _pages.elementAt(currentIndex),
+          ),
+        ),
       ),
     );
   }

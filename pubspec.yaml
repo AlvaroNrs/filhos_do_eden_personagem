@@ -55,7 +55,20 @@ dev_dependencies:
 flutter:
   assets:
     - assets/
-
+    - assets/sheet/celestials/elohins/
+    - assets/sheet/celestials/hashmalins/
+    - assets/sheet/celestials/ishins/
+    - assets/sheet/celestials/malakins/
+    - assets/sheet/celestials/ofanins/
+    - assets/sheet/celestials/querubins/
+    - assets/sheet/celestials/serafins/
+    - assets/sheet/infernals/baals/
+    - assets/sheet/infernals/belials/
+    - assets/sheet/infernals/daimonius/
+    - assets/sheet/infernals/malikis/
+    - assets/sheet/infernals/satanis/
+    - assets/sheet/infernals/succubus_incubus/
+    - assets/sheet/infernals/zanathus/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

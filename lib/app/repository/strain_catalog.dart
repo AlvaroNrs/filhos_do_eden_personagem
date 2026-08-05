@@ -7,7 +7,7 @@ abstract class StrainCatalog {
       strain: Strain.legionario,
       name: 'Legionário',
       description: 'Soldado da linha de frente nas batalhas, costumeiramente armado e disciplinado',
-      avatarAssetPath: 'assets/sheet/celestials/querubins/querubins_legionario.png',
+      avatarAssetPath: 'assets/sheet/celestials/querubins/querubins_legionarios.png',
     ),
     Strain.shedu: StrainDefinition(
       strain: Strain.shedu,

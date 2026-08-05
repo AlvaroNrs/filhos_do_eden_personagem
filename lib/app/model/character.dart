@@ -1,3 +1,4 @@
+import 'package:filhos_do_eden_personagem/app/model/power_definition.dart';
 import 'package:filhos_do_eden_personagem/app/model/strain_definition.dart';
 import 'package:filhos_do_eden_personagem/app/repository/character_type_catalog.dart';
 import 'package:filhos_do_eden_personagem/app/model/character_type_definition.dart';
@@ -11,14 +12,12 @@ class Character {
   final String name;
   final CharacterType type;
   final Strain selectedStrain;
-  final List<Power> currentPowers;
 
   const Character({
     required this.id,
     required this.name,
     required this.type,
     required this.selectedStrain,
-    required this.currentPowers,
   });
 
   // Método auxiliar para pegar as regras/dados visuais da classe do personagem
@@ -26,4 +25,6 @@ class Character {
       CharacterTypeCatalog.classes[type]!;
   StrainDefinition get strainDefinition =>
     StrainCatalog.strains[selectedStrain]!;
+  List<Power> get powerDefinition => 
+    CharacterTypeCatalog.classes[type]!.startPowers.toList();
 }

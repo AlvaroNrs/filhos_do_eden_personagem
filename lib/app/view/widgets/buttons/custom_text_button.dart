@@ -19,7 +19,7 @@ class _CustomTextButtonState extends State<CustomTextButton> {
         padding: EdgeInsets.only(top: 12, bottom: 8, left: 20, right: 20),
         shape: RoundedRectangleBorder(
           side: BorderSide(color: AppColors.gold, width: 2),
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(4),
         )
       ),
       onPressed: () =>  widget.onPressed(),
@@ -27,7 +27,7 @@ class _CustomTextButtonState extends State<CustomTextButton> {
         style: TextStyle(
           color: AppColors.white,
           fontFamily: 'Eremaeus',
-          fontSize: 18,
+          fontSize: 16,
         ),        
       )
     );
