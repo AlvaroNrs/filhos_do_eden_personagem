@@ -5,7 +5,7 @@ enum Skill {
   inteligencia('Inteligência'),
   sabedoria('Sabedoria'),
   carisma('Carisma'),
-  forcaOuDestreza('Força/Destreza');
+  forcaOuDestreza('Força / Destreza');
 
   const Skill(this.name);
   final String name;

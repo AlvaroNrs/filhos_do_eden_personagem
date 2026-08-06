@@ -1,16 +1,12 @@
 import 'package:filhos_do_eden_personagem/app/view/styles/app_colors.dart';
 import 'package:filhos_do_eden_personagem/app/view/widgets/buttons/circular_main_button.dart';
-import 'package:filhos_do_eden_personagem/app/view_model/theme_view_model.dart';
+import 'package:filhos_do_eden_personagem/app/view_model/data_view_model.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  final ThemeViewModel themeViewModel;
-  final Function(int value) updateIndex;
-  const HomePage({super.key, required this.themeViewModel, required this.updateIndex});
-
-  void updateTheme(){
-    themeViewModel.changeThemeColor(AppColors.celestialThemeColor);
-  }
+  final DataViewModel dataViewModel;
+  final Function(int i) updateIndex;
+  const HomePage({super.key, required this.dataViewModel, required this.updateIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -54,12 +50,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-//CustomTextButton(text: "Trocar Tema", onPressed: updateTheme)
-// IconButton(
-//                 onPressed: () => closeModal(),
-//                   icon: SvgPicture.asset(
-//                   'assets/icons/Cancel_Dark.svg',
-//                   width: 60,
-//                   height: 60,
-//                   ),
-//                 ),

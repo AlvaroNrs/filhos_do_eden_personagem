@@ -18,8 +18,9 @@ abstract class CharacterTypeCatalog {
         SkillBonus(skill: Skill.constituicao, bonus: 2),
         SkillBonus(skill: Skill.forcaOuDestreza, bonus: 2),
       ],
-      startPowers: [Power.armaDedicada, Power.controleGravitacional],
-      benefits: ['+1 Ataque Extra no 2º, 4º e 6º Ciclos', 'Ataque Desarmado'],
+      startPowers: [Power.armaDedicada, Power.controleGravitacional, Power.reflexosRapidos, Power.sentidosAgucados, 
+        Power.trilhaDoCacador, Power.ultimoSuspiro ],
+      benefits: ['1 Ataque Extra no 2º Ciclo', '1 Ataque Extra no 4º Ciclo', '1 Ataque Extra no 6º Ciclo', 'Ataque Desarmado'],
       typeIconAssetPath: 'assets/sheet/celestials/querubins/querubins.png',
     ),
 

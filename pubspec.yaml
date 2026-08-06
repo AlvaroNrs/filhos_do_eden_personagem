@@ -79,6 +79,10 @@ flutter:
     fonts:
       - asset: fonts/EremaeusRegular.otf
 
+  - family: Belleza
+    fonts:
+      - asset: fonts/BellezaRegular.ttf
+
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true

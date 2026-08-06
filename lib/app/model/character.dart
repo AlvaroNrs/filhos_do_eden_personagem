@@ -1,4 +1,3 @@
-import 'package:filhos_do_eden_personagem/app/model/power_definition.dart';
 import 'package:filhos_do_eden_personagem/app/model/strain_definition.dart';
 import 'package:filhos_do_eden_personagem/app/repository/character_type_catalog.dart';
 import 'package:filhos_do_eden_personagem/app/model/character_type_definition.dart';

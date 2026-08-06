@@ -1,10 +1,11 @@
 import 'package:filhos_do_eden_personagem/app/model/character.dart';
 import 'package:filhos_do_eden_personagem/app/shared/enums/character_type.dart';
 import 'package:filhos_do_eden_personagem/app/shared/enums/strain.dart';
+import 'package:filhos_do_eden_personagem/app/view/pages/character_sheet_page.dart';
 import 'package:filhos_do_eden_personagem/app/view/pages/created_characters_page.dart';
 import 'package:filhos_do_eden_personagem/app/view/pages/home_page.dart';
 import 'package:filhos_do_eden_personagem/app/view/styles/app_colors.dart';
-import 'package:filhos_do_eden_personagem/app/view_model/theme_view_model.dart';
+import 'package:filhos_do_eden_personagem/app/view_model/data_view_model.dart';
 import 'package:flutter/material.dart';
 
 class NavigatorStart extends StatefulWidget {
@@ -15,8 +16,9 @@ class NavigatorStart extends StatefulWidget {
 }
 
 class _NavigatorStartState extends State<NavigatorStart> {
-  final themeViewModel = ThemeViewModel();
   int currentIndex = 0;
+  final dataViewModel = DataViewModel();
+
   List<Character> charactersList = [
     Character(id: "1", name: "Azrael", type: CharacterType.querubim,
       selectedStrain: Strain.legionario),
@@ -25,13 +27,14 @@ class _NavigatorStartState extends State<NavigatorStart> {
   ];
 
   late final List<Widget> _pages = [
-    HomePage(themeViewModel: themeViewModel, updateIndex: updateIndex),
-    CreatedCharactersPage(updateIndex: updateIndex, charactersList: charactersList,)
+    HomePage(dataViewModel: dataViewModel, updateIndex: updateIndex),
+    CreatedCharactersPage(charactersList: charactersList, dataViewModel: dataViewModel, updateIndex: updateIndex),
+    CharacterSheetPage(dataViewModel: dataViewModel, updateIndex: updateIndex),
   ];
 
-  void updateIndex(int newIndex){
+  void updateIndex(int i){
     setState(() {
-      currentIndex = newIndex;
+      currentIndex = i;
     });
   }
 
@@ -40,7 +43,7 @@ class _NavigatorStartState extends State<NavigatorStart> {
     return Scaffold(
       body: ValueListenableBuilder<Color>(
         // Escuta a propriedade que pertence ao ViewModel
-        valueListenable: themeViewModel.themeViewColor,
+        valueListenable: dataViewModel.themeViewColor,
         builder: (context, color, child) {
           return AnimatedContainer(
             duration: const Duration(milliseconds: 300),
