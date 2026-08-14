@@ -4,10 +4,12 @@ import 'package:filhos_do_eden_personagem/app/shared/enums/light_and_darkness.da
 import 'package:filhos_do_eden_personagem/app/shared/enums/strain.dart';
 import 'package:filhos_do_eden_personagem/app/view/styles/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 class DataViewModel extends ChangeNotifier {
   final themeViewColor = ValueNotifier<Color>(AppColors.neutralThemeColor);
-  final characterViewModel = ValueNotifier<Character>(Character(id: "0", name: "Azrael", type: CharacterType.querubim,
+  var characterViewModel = ValueNotifier<Character>(Character(id: Uuid().v1(), name: "", side: LightAndDarkness.light,
+  type: CharacterType.querubim,
       selectedStrain: Strain.legionario),);
 
   void changeThemeColor(LightAndDarkness? lightAndDarkness)  {
@@ -17,8 +19,11 @@ class DataViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void changeCharacter(Character c) {
-    characterViewModel.value = c;
+  void changeCharacter(String? name, LightAndDarkness? side, CharacterType? characterType, Strain? strain) {
+    if(side != null) characterViewModel.value.side = side;
+    if(characterType != null) characterViewModel.value.type = characterType;
+    if(strain != null) characterViewModel.value.selectedStrain = strain;
+    if(name != null && name.isNotEmpty) characterViewModel.value.name = name;
     notifyListeners();
   }
 }

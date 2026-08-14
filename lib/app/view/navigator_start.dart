@@ -1,12 +1,15 @@
 import 'package:filhos_do_eden_personagem/app/model/character.dart';
 import 'package:filhos_do_eden_personagem/app/shared/enums/character_type.dart';
+import 'package:filhos_do_eden_personagem/app/shared/enums/light_and_darkness.dart';
 import 'package:filhos_do_eden_personagem/app/shared/enums/strain.dart';
+import 'package:filhos_do_eden_personagem/app/view/pages/character_creation_page.dart';
 import 'package:filhos_do_eden_personagem/app/view/pages/character_sheet_page.dart';
 import 'package:filhos_do_eden_personagem/app/view/pages/created_characters_page.dart';
 import 'package:filhos_do_eden_personagem/app/view/pages/home_page.dart';
 import 'package:filhos_do_eden_personagem/app/view/styles/app_colors.dart';
 import 'package:filhos_do_eden_personagem/app/view_model/data_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 class NavigatorStart extends StatefulWidget {
   const NavigatorStart({super.key});
@@ -17,12 +20,14 @@ class NavigatorStart extends StatefulWidget {
 
 class _NavigatorStartState extends State<NavigatorStart> {
   int currentIndex = 0;
+  int currentStep = 0;
+  bool optionSelected = false;
   final dataViewModel = DataViewModel();
 
   List<Character> charactersList = [
-    Character(id: "1", name: "Azrael", type: CharacterType.querubim,
+    Character(id: "1", name: "Azrael", side: LightAndDarkness.light, type: CharacterType.querubim,
       selectedStrain: Strain.legionario),
-    Character(id: "2", name: "Meu Advogado", type: CharacterType.baal,
+    Character(id: "2", name: "Meu Advogado",side: LightAndDarkness.darkness , type: CharacterType.baal,
       selectedStrain: Strain.negociante),
   ];
 
@@ -30,6 +35,7 @@ class _NavigatorStartState extends State<NavigatorStart> {
     HomePage(dataViewModel: dataViewModel, updateIndex: updateIndex),
     CreatedCharactersPage(charactersList: charactersList, dataViewModel: dataViewModel, updateIndex: updateIndex),
     CharacterSheetPage(dataViewModel: dataViewModel, updateIndex: updateIndex),
+    CharacterCreationPage(dataViewModel: dataViewModel, currentStep: currentStep, updateIndex: updateIndex, updateStep: updateStep)
   ];
 
   void updateIndex(int i){
@@ -38,6 +44,12 @@ class _NavigatorStartState extends State<NavigatorStart> {
     });
   }
 
+  void updateStep(int newStep){
+    setState(() {
+      currentStep = newStep;
+    });
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -14,7 +14,7 @@ class CharacterListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => {
-        dataViewModel.changeCharacter(character),
+        dataViewModel.changeCharacter(character.name,character.side, character.type, character.selectedStrain),
         dataViewModel.changeThemeColor(character.classDefinition.lightAndDarkness),
         updateIndex(2)
       },

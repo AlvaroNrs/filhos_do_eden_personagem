@@ -1,4 +1,5 @@
 enum LightAndDarkness {
   light,
-  darkness;
+  darkness,
+  neutral;
 }
