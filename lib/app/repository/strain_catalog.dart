@@ -56,7 +56,7 @@ abstract class StrainCatalog {
     Strain.militar: StrainDefinition(
       strain: Strain.militar,
       name: 'Militar',
-      description: 'Responsável pela segurança da casta que treinam com armas de fogo e ações táticas',
+      description: 'Responsável pela segurança da casta que treina com armas de fogo e ações táticas',
       avatarAssetPath: 'assets/sheet/celestials/elohins/elohins_militares.png',
     ),
 
@@ -64,7 +64,7 @@ abstract class StrainCatalog {
       strain: Strain.missionario,
       name: 'Missionário',
       description: 'Andarilho do mundo físico que ajuda causas humanitárias como pessoas ou animais, oferecendo conforto',
-      avatarAssetPath: 'assets/sheet/celestials/ofanins/ofanins_missionario.png',
+      avatarAssetPath: 'assets/sheet/celestials/ofanins/ofanins_missionarios.png',
     ),
     Strain.shenzai: StrainDefinition(
       strain: Strain.shenzai,
@@ -102,7 +102,7 @@ abstract class StrainCatalog {
       strain: Strain.patrulheiro,
       name: 'Patrulheiro',
       description: 'Defensor da natureza ligado às plantas e animais, além de caçador dos que ameaçam os recursos naturais',
-      avatarAssetPath: 'assets/sheet/celestials/ishins/ishins_patrulheiro.png',
+      avatarAssetPath: 'assets/sheet/celestials/ishins/ishins_patrulheiros.png',
     ),
     Strain.djinn: StrainDefinition(
       strain: Strain.djinn,
@@ -169,9 +169,9 @@ abstract class StrainCatalog {
       avatarAssetPath: 'assets/sheet/infernals/satanis/satanis_cavalarianos.png',
     ),
     Strain.seraph: StrainDefinition(
-      strain: Strain.shaitan,
+      strain: Strain.seraph,
       name: 'Séraph',
-      description: 'Devorador de almas com corpo animalesco que passa pelas trincheiras devorando oponentes feridos',
+      description: 'Líder político que prefere governar não pela violência, mas pela intriga, retórica e diplomacia',
       avatarAssetPath: 'assets/sheet/infernals/satanis/satanis_seraphs.png',
     ),
 
@@ -240,7 +240,7 @@ abstract class StrainCatalog {
     ),
     Strain.khuraga: StrainDefinition(
       strain: Strain.khuraga,
-      name: 'Khurãgas',
+      name: 'Khurãga',
       description: 'Figura atroz que incorpora o lado macabro das forças animais, tendo forma de bestas selvagens',
       avatarAssetPath: 'assets/sheet/infernals/zanathus/zanathus_khuragas.png',
     ),

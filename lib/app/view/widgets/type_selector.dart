@@ -9,10 +9,11 @@ class TypeSelector extends StatelessWidget {
   final DataViewModel dataViewModel;
   final CharacterClassDefinition type;
   final bool selected;
+  final bool upperSelection;
   final Function(int i, String s) updateDescription;
   final Function(int i) updateOptionSelected;
   const TypeSelector({super.key, required this.iconAssetPath, required this.dataViewModel, required this.type,
-  required this.updateDescription, required this.updateOptionSelected, required this.selected, });
+  required this.updateDescription, required this.updateOptionSelected, required this.selected, required this.upperSelection, });
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +27,7 @@ class TypeSelector extends StatelessWidget {
                 iconSize: 40,
                 onPressed: () {
                   updateDescription(1, type.description);
+                  if(dataViewModel.characterViewModel.value.type != type.type && upperSelection) updateOptionSelected(2);
                   dataViewModel.changeCharacter("", null, type.type, null);
                   if (!selected) updateOptionSelected(1);
                 },

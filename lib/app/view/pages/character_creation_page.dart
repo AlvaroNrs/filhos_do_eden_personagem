@@ -1,9 +1,12 @@
 import 'dart:core';
 import 'package:filhos_do_eden_personagem/app/model/character_type_definition.dart';
+import 'package:filhos_do_eden_personagem/app/model/strain_definition.dart';
 import 'package:filhos_do_eden_personagem/app/repository/character_type_catalog.dart';
+import 'package:filhos_do_eden_personagem/app/repository/strain_catalog.dart';
 import 'package:filhos_do_eden_personagem/app/shared/enums/light_and_darkness.dart';
 import 'package:filhos_do_eden_personagem/app/view/styles/app_colors.dart';
 import 'package:filhos_do_eden_personagem/app/view/widgets/creation_step_page.dart';
+import 'package:filhos_do_eden_personagem/app/view/widgets/strain_selector.dart';
 import 'package:filhos_do_eden_personagem/app/view/widgets/type_selector.dart';
 import 'package:filhos_do_eden_personagem/app/view_model/data_view_model.dart';
 import 'package:flutter/material.dart';
@@ -27,15 +30,28 @@ class _CharacterCreationPageState extends State<CharacterCreationPage> {
   List<String> descriptionList = ["", "", ""];
   Color detailColor = AppColors.darkBrown;
   int currentStep = 0;
+  final int totalSteps = 3;
 
   final List<CharacterClassDefinition> lightCharacters = CharacterTypeCatalog.classes.values
     .where((character) => character.lightAndDarkness == LightAndDarkness.light).toList();
   final List<CharacterClassDefinition> darknessCharacters = CharacterTypeCatalog.classes.values
     .where((character) => character.lightAndDarkness == LightAndDarkness.darkness).toList();
-
+  
   List<CharacterClassDefinition> get actualTypeList => widget.dataViewModel.characterViewModel.value.side == 
-    LightAndDarkness.light ? lightCharacters : darknessCharacters;
+  LightAndDarkness.light ? lightCharacters : darknessCharacters;
 
+  List<StrainDefinition> get actualStrainList {
+  final selectedType = widget.dataViewModel.characterViewModel.value.type;
+  if (selectedType == null) return [];
+  // Busca a definição do tipo selecionado
+  final classDefinition = CharacterTypeCatalog.classes[selectedType];
+  if (classDefinition == null) return [];
+  // Mapeia os enums de possibleStrains para os objetos StrainDefinition do StrainCatalog
+  return classDefinition.possibleStrains
+      .map((strainEnum) => StrainCatalog.strains[strainEnum])
+      .whereType<StrainDefinition>() // Garante tipo não nulo
+      .toList();
+  }
 
   void updateStep(int newStep){
     setState(() {
@@ -86,8 +102,9 @@ class _CharacterCreationPageState extends State<CharacterCreationPage> {
         mainContentAligment: MainAxisAlignment.spaceAround,
         columnSpacing: 5,
         currentStep: currentStep,
-        totalSteps: 5,
+        totalSteps: totalSteps,
         optionSelected: optionSelected[0],
+        visibleDescription: true,
         updateIndex: widget.updateIndex,
         updateStep: updateStep,
         detailColor: detailColor,
@@ -194,10 +211,11 @@ class _CharacterCreationPageState extends State<CharacterCreationPage> {
         descriptionList: descriptionList,
         mainContentAligment: MainAxisAlignment.spaceAround,
         columnSpacing: 5,
-        totalSteps: 3,
+        totalSteps: totalSteps,
         currentStep: currentStep,
         description: descriptionList[1],
         optionSelected: optionSelected[1],
+        visibleDescription: true,
         updateIndex: widget.updateIndex,
         updateStep: updateStep,
         detailColor: detailColor,
@@ -213,8 +231,41 @@ class _CharacterCreationPageState extends State<CharacterCreationPage> {
               for(var type in actualTypeList)
               TypeSelector(iconAssetPath: type.typeIconAssetPath, dataViewModel: widget.dataViewModel,
                 type: type, updateDescription: updateDescription, updateOptionSelected: updateOptionSelected, 
-                selected: optionSelected[1],),
+                selected: optionSelected[1], upperSelection: optionSelected[2],),
             ]
+          )
+        ],
+      ),
+
+      CreationStepPage(
+        dataViewModel: widget.dataViewModel,
+        title: "3 - Estirpe",
+        subtitle: "Escolha sua estirpe",
+        descriptionList: descriptionList,
+        mainContentAligment: MainAxisAlignment.spaceAround,
+        columnSpacing: 5,
+        totalSteps: totalSteps,
+        currentStep: currentStep,
+        description: descriptionList[2],
+        optionSelected: optionSelected[2],
+        visibleDescription: false,
+        updateIndex: widget.updateIndex,
+        updateStep: updateStep,
+        detailColor: detailColor,
+        updateOptionSelected: updateOptionSelected,
+        updateStepDescription: updateDescription,
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 10),
+            child: Column(
+              spacing: 12,
+              children: [
+                for(var strain in actualStrainList)
+                StrainSelector(dataViewModel: widget.dataViewModel,
+                  strainDefinition: strain, updateDescription: updateDescription, updateOptionSelected: updateOptionSelected, 
+                  selected: optionSelected[2],),
+                ],
+            ),
           )
         ],
       ),

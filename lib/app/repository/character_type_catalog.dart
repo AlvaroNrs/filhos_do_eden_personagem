@@ -95,7 +95,7 @@ abstract class CharacterTypeCatalog {
       name: 'Ishim',
       description: 'Ishins governam as forças elementais, com grande poder e avessos à tecnologia humana',
       lightAndDarkness: LightAndDarkness.light,
-      possibleStrains: [Strain.patrulheiro, Strain.efreet, Strain.elementalista],
+      possibleStrains: [Strain.patrulheiro, Strain.djinn, Strain.elementalista],
       skillsBonus: [
         SkillBonus(skill: Skill.destreza, bonus: 2),
         SkillBonus(skill: Skill.sabedoria, bonus: 1),

@@ -14,6 +14,7 @@ class CreationStepPage extends StatelessWidget {
   final int totalSteps;
   final int currentStep;
   final bool optionSelected;
+  final bool visibleDescription;
   final Color detailColor;
   final MainAxisAlignment mainContentAligment;
   final double columnSpacing;
@@ -37,7 +38,7 @@ class CreationStepPage extends StatelessWidget {
     required this.mainContentAligment, 
     required this.columnSpacing,
     required this.description,
-    required this.detailColor, required this.descriptionList, required this.updateStepDescription
+    required this.detailColor, required this.descriptionList, required this.updateStepDescription, required this.visibleDescription
   });
 
   @override
@@ -75,8 +76,8 @@ class CreationStepPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 75,
-            child: optionSelected ? Text(
+            height: visibleDescription! ? 75 : 0,
+            child: optionSelected && visibleDescription ? Text(
               description,
               textAlign: TextAlign.center,
               style: TextStyle(
