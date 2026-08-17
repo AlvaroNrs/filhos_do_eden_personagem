@@ -137,7 +137,7 @@ abstract class CharacterTypeCatalog {
       ],
       startPowers: [Power.armaDedicada, Power.controleGravitacional],
       benefits: ['+1 Ataque Extra no 2º, 4º e 6º Ciclos', 'Ataque Desarmado'],
-      typeIconAssetPath: 'assets/sheet/infernals/maliks/malikis.png'
+      typeIconAssetPath: 'assets/sheet/infernals/malikis/malikis.png'
     ),
 
     CharacterType.satanis: CharacterClassDefinition(
@@ -222,9 +222,9 @@ abstract class CharacterTypeCatalog {
       typeIconAssetPath: 'assets/sheet/infernals/zanathus/zanathus.png'
     ),
 
-    CharacterType.succubusIncubbus: CharacterClassDefinition(
-      type: CharacterType.succubusIncubbus,
-      name: 'Succubus/Incubbus',
+    CharacterType.succubusIncubus: CharacterClassDefinition(
+      type: CharacterType.succubusIncubus,
+      name: 'Succubus/Incubus',
       description: 'Succubus e Incubus são galantes e charmosos que guardam intenções perversas e buscam corromper almas pela sedução',
       lightAndDarkness: LightAndDarkness.darkness,
       possibleStrains: [Strain.rabasha, Strain.yaksha, Strain.lamia],
@@ -236,7 +236,7 @@ abstract class CharacterTypeCatalog {
       startPowers: [Power.abracadabra, Power.conjurarElementoFogo, Power.lerEmocoes, Power.sentidosAgucados, Power.servoInvisivel,
       Power.telepatia],
       benefits: ['Sedução', 'Beijo da morte'],
-      typeIconAssetPath: 'assets/sheet/infernals/succubus_incubbus/succubus_incubbus.png'
+      typeIconAssetPath: 'assets/sheet/infernals/succubus_incubus/succubus_incubus.png'
     )
   };
 }

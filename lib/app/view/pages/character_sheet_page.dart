@@ -53,7 +53,7 @@ class _CharacterSheetPageState extends State<CharacterSheetPage> {
                 ),
               ),
               Text(
-                widget.dataViewModel.characterViewModel.value.type.name.toUpperCase(),
+                widget.dataViewModel.characterViewModel.value.type!.name.toUpperCase(),
                 style: const TextStyle(
                   color: AppColors.darkBrown,
                   fontFamily: 'Eremaeus',

@@ -12,5 +12,5 @@ enum CharacterType {
   daimonium,
   baal,
   zanathus,
-  succubusIncubbus;
+  succubusIncubus;
 }

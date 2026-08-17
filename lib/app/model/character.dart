@@ -13,8 +13,8 @@ class Character {
   String id;
   String name;
   LightAndDarkness side;
-  CharacterType type;
-  Strain selectedStrain;
+  CharacterType? type;
+  Strain? selectedStrain;
 
   Character({
     required this.id,

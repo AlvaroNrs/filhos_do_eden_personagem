@@ -9,8 +9,7 @@ import 'package:uuid/uuid.dart';
 class DataViewModel extends ChangeNotifier {
   final themeViewColor = ValueNotifier<Color>(AppColors.neutralThemeColor);
   var characterViewModel = ValueNotifier<Character>(Character(id: Uuid().v1(), name: "", side: LightAndDarkness.light,
-  type: CharacterType.querubim,
-      selectedStrain: Strain.legionario),);
+  type: null, selectedStrain: null),);
 
   void changeThemeColor(LightAndDarkness? lightAndDarkness)  {
     if(lightAndDarkness == null) themeViewColor.value = AppColors.neutralThemeColor;

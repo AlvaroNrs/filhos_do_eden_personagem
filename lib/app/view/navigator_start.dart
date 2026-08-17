@@ -9,7 +9,6 @@ import 'package:filhos_do_eden_personagem/app/view/pages/home_page.dart';
 import 'package:filhos_do_eden_personagem/app/view/styles/app_colors.dart';
 import 'package:filhos_do_eden_personagem/app/view_model/data_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
 
 class NavigatorStart extends StatefulWidget {
   const NavigatorStart({super.key});
@@ -20,7 +19,6 @@ class NavigatorStart extends StatefulWidget {
 
 class _NavigatorStartState extends State<NavigatorStart> {
   int currentIndex = 0;
-  int currentStep = 0;
   bool optionSelected = false;
   final dataViewModel = DataViewModel();
 
@@ -35,18 +33,12 @@ class _NavigatorStartState extends State<NavigatorStart> {
     HomePage(dataViewModel: dataViewModel, updateIndex: updateIndex),
     CreatedCharactersPage(charactersList: charactersList, dataViewModel: dataViewModel, updateIndex: updateIndex),
     CharacterSheetPage(dataViewModel: dataViewModel, updateIndex: updateIndex),
-    CharacterCreationPage(dataViewModel: dataViewModel, currentStep: currentStep, updateIndex: updateIndex, updateStep: updateStep)
+    CharacterCreationPage(dataViewModel: dataViewModel, updateIndex: updateIndex)
   ];
 
   void updateIndex(int i){
     setState(() {
       currentIndex = i;
-    });
-  }
-
-  void updateStep(int newStep){
-    setState(() {
-      currentStep = newStep;
     });
   }
   

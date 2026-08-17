@@ -80,7 +80,7 @@ class CharacterListTile extends StatelessWidget {
                                 height: 35,
                               ),
                             ),
-                            Text(character.type.name.toUpperCase(),
+                            Text(character.type!.name.toUpperCase(),
                               style: TextStyle(
                                 color: AppColors.darkBrown,
                                 fontFamily: 'Eremaeus',
