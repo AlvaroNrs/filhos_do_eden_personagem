@@ -1,3 +1,4 @@
+import 'package:filhos_do_eden_personagem/app/model/character.dart';
 import 'package:filhos_do_eden_personagem/app/view/styles/app_colors.dart';
 import 'package:filhos_do_eden_personagem/app/view/widgets/buttons/custom_text_button.dart';
 import 'package:filhos_do_eden_personagem/app/view/widgets/creation_stage_bar.dart';
@@ -18,10 +19,11 @@ class CreationStepPage extends StatelessWidget {
   final Color detailColor;
   final MainAxisAlignment mainContentAligment;
   final double columnSpacing;
+  final Function resetOptions;
   final Function(int i) updateIndex;
   final Function(int i) updateStep;
   final Function(int i, String s) updateStepDescription;
-  final Function(int i) updateOptionSelected;
+  final List<Character> charactersList;
 
   const CreationStepPage({
     super.key,
@@ -34,15 +36,17 @@ class CreationStepPage extends StatelessWidget {
     required this.optionSelected,
     required this.updateIndex,
     required this.updateStep,
-    required this.updateOptionSelected,
     required this.mainContentAligment, 
     required this.columnSpacing,
     required this.description,
-    required this.detailColor, required this.descriptionList, required this.updateStepDescription, required this.visibleDescription
+    required this.detailColor, required this.descriptionList, required this.updateStepDescription,
+    required this.visibleDescription, required this.charactersList, required this.resetOptions
   });
 
   @override
   Widget build(BuildContext context) {
+    int indexWhere = 0;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       child: Column(
@@ -63,7 +67,7 @@ class CreationStepPage extends StatelessWidget {
               subtitle,
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: optionSelected ? detailColor : AppColors.darkBrown,
+                color: optionSelected || currentStep >= totalSteps ? detailColor : AppColors.darkBrown,
                 fontSize: 22,
                 fontFamily: 'Belleza',
               ),
@@ -76,7 +80,7 @@ class CreationStepPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: visibleDescription! ? 75 : 0,
+            height: visibleDescription ? 75 : 0,
             child: optionSelected && visibleDescription ? Text(
               description,
               textAlign: TextAlign.center,
@@ -97,6 +101,7 @@ class CreationStepPage extends StatelessWidget {
                 text: "Voltar",
                 onPressed: () {
                   if(currentStep <= 0){
+                    resetOptions();
                     dataViewModel.changeThemeColor(null);
                     updateIndex(0);
                   } else {
@@ -106,10 +111,19 @@ class CreationStepPage extends StatelessWidget {
               ),
               if (optionSelected)
                 CustomTextButton(
-                  text: "Avançar",
+                  text: currentStep < totalSteps ? "Avançar" : "Concluir",
                   onPressed: () {
-                    if(currentStep+1 <= totalSteps-1){
+                    if(currentStep+1 <= totalSteps){
                       updateStep(currentStep+1);
+                    } else {
+                      if(charactersList.any((c) => c.id == dataViewModel.characterViewModel.value.id)){
+                        indexWhere = charactersList.indexWhere((c) => c.id == dataViewModel.characterViewModel.value.id);
+                        charactersList[indexWhere] = dataViewModel.characterViewModel.value;
+                      } else {
+                        charactersList.add(dataViewModel.characterViewModel.value);
+                      }
+                      //TO-DO: Lançar msg de personagem adicionado
+                      updateIndex(2);
                     }
                   },
                 ),

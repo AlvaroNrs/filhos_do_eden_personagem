@@ -39,7 +39,7 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             spacing: 20,
             children: [
-              CircularMainButton(text: "Novo Personagem", onPressed: (){updateIndex(3);},
+              CircularMainButton(text: "Novo Personagem", onPressed: (){ dataViewModel.resetGeneratedCharacter() ; updateIndex(3);},
                 iconAssetPath: "assets/character.png", iconSize: 150, radius: 90),
               CircularMainButton(text: "Personagens Criados", onPressed: (){updateIndex(1);},
                 iconAssetPath: "assets/sides.png", iconSize: 130, radius: 90),

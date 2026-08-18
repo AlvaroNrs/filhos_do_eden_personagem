@@ -8,8 +8,7 @@ import 'package:uuid/uuid.dart';
 
 class DataViewModel extends ChangeNotifier {
   final themeViewColor = ValueNotifier<Color>(AppColors.neutralThemeColor);
-  var characterViewModel = ValueNotifier<Character>(Character(id: Uuid().v1(), name: "", side: LightAndDarkness.light,
-  type: null, selectedStrain: null),);
+  late var characterViewModel = generateNew();
 
   void changeThemeColor(LightAndDarkness? lightAndDarkness)  {
     if(lightAndDarkness == null) themeViewColor.value = AppColors.neutralThemeColor;
@@ -18,11 +17,22 @@ class DataViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void changeCharacter(String? name, LightAndDarkness? side, CharacterType? characterType, Strain? strain) {
+  void changeCharacter(String? id, String? name, LightAndDarkness? side, CharacterType? characterType, Strain? strain) {
+    if(id != null) characterViewModel.value.id = id;
     if(side != null) characterViewModel.value.side = side;
     if(characterType != null) characterViewModel.value.type = characterType;
     if(strain != null) characterViewModel.value.selectedStrain = strain;
     if(name != null && name.isNotEmpty) characterViewModel.value.name = name;
     notifyListeners();
+  }
+
+  void resetGeneratedCharacter(){
+    characterViewModel = generateNew();
+    notifyListeners();
+  }
+
+  ValueNotifier<Character> generateNew(){
+    return ValueNotifier<Character>(Character(id: Uuid().v1(), name: "", side: LightAndDarkness.light,
+      type: null, selectedStrain: null),);
   }
 }

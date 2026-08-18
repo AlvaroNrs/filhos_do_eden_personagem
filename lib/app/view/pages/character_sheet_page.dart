@@ -7,8 +7,11 @@ import 'package:flutter/material.dart';
 
 class CharacterSheetPage extends StatefulWidget {
   final DataViewModel dataViewModel;
+  final Function() setEditingOptions;
   final Function(int i) updateIndex;
-  const CharacterSheetPage({super.key, required this.dataViewModel, required this.updateIndex});
+  final Function(int i) updateStep;
+  const CharacterSheetPage({super.key, required this.dataViewModel, required this.updateIndex, required this.updateStep,
+  required this.setEditingOptions});
 
   @override
   State<CharacterSheetPage> createState() => _CharacterSheetPageState();
@@ -115,7 +118,7 @@ class _CharacterSheetPageState extends State<CharacterSheetPage> {
                       list: skillBonusList,
                     ),
                     SheetSectionDetail(
-                      title: "Divindades",
+                      title: widget.dataViewModel.characterViewModel.value.side == LightAndDarkness.light ? "Divindades" : "Profanações",
                       side: widget.dataViewModel.characterViewModel.value.classDefinition.lightAndDarkness,
                       list: powersList,
                     ),
@@ -137,10 +140,18 @@ class _CharacterSheetPageState extends State<CharacterSheetPage> {
                 text: "Voltar", 
                 onPressed: () { 
                   widget.dataViewModel.changeThemeColor(null); 
+                  widget.dataViewModel.resetGeneratedCharacter();
                   widget.updateIndex(1);
                 },
               ),
-              CustomTextButton(text: "Editar", onPressed: () {}),
+              CustomTextButton(
+                text: "Editar",
+                onPressed: () {
+                  widget.setEditingOptions();
+                  widget.updateStep(3);
+                  widget.updateIndex(3);
+                }
+              ),
             ],
           ),
         ],
@@ -170,6 +181,7 @@ class SheetSectionDetail extends StatelessWidget {
               color: AppColors.darkBrown,
               fontFamily: 'Eremaeus',
               fontSize: 18,
+              fontWeight: FontWeight.w500
             ),
           ),
           ListView.builder(
@@ -196,6 +208,7 @@ class SheetSectionDetail extends StatelessWidget {
                       color: AppColors.darkBrown,
                       fontFamily: 'Belleza',
                       fontSize: 14,
+                      fontWeight: FontWeight.w500
                     ),
                   ),
                 ],

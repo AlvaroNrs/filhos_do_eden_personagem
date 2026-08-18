@@ -19,34 +19,122 @@ class NavigatorStart extends StatefulWidget {
 
 class _NavigatorStartState extends State<NavigatorStart> {
   int currentIndex = 0;
-  bool optionSelected = false;
   final dataViewModel = DataViewModel();
+  int currentStep = 0;
+  List<bool> optionSelected = [false, false, false];
+  List<String> descriptionList = ["", "", ""];
 
   List<Character> charactersList = [
-    Character(id: "1", name: "Azrael", side: LightAndDarkness.light, type: CharacterType.querubim,
-      selectedStrain: Strain.legionario),
-    Character(id: "2", name: "Meu Advogado",side: LightAndDarkness.darkness , type: CharacterType.baal,
-      selectedStrain: Strain.negociante),
+    Character(
+      id: "1",
+      name: "Azrael",
+      side: LightAndDarkness.light,
+      type: CharacterType.querubim,
+      selectedStrain: Strain.legionario,
+    ),
+    Character(
+      id: "2",
+      name: "Meu Advogado",
+      side: LightAndDarkness.darkness,
+      type: CharacterType.baal,
+      selectedStrain: Strain.negociante,
+    ),
   ];
 
-  late final List<Widget> _pages = [
-    HomePage(dataViewModel: dataViewModel, updateIndex: updateIndex),
-    CreatedCharactersPage(charactersList: charactersList, dataViewModel: dataViewModel, updateIndex: updateIndex),
-    CharacterSheetPage(dataViewModel: dataViewModel, updateIndex: updateIndex),
-    CharacterCreationPage(dataViewModel: dataViewModel, updateIndex: updateIndex)
-  ];
+  // 1. Remova a variável `late final List<Widget> _pages` de cima
 
-  void updateIndex(int i){
+  void updateIndex(int i) {
     setState(() {
       currentIndex = i;
     });
   }
-  
+
+  void updateStep(int newStep) {
+    setState(() {
+      currentStep = newStep;
+    });
+  }
+
+  void updateOptionSelected(int indexToUpdate) {
+    setState(() {
+      optionSelected[indexToUpdate] = !optionSelected[indexToUpdate];
+    });
+  }
+
+  void updateDescription(int index, String newDescription) {
+    setState(() {
+      descriptionList[index] = newDescription;
+    });
+  }
+
+  void resetOptions() {
+    setState(() {
+      optionSelected = [false, false, false];
+      descriptionList = ["", "", ""];
+    });
+  }
+
+  void resetInnerDescriptions() {
+    setState(() {
+      descriptionList[1] = "";
+      descriptionList[2] = "";
+    });
+  }
+
+  void setEditingOptions() {
+    setState(() {
+      optionSelected = [true, true, true];
+      descriptionList = [
+        dataViewModel.characterViewModel.value.sideDefinition.description,
+        dataViewModel.characterViewModel.value.classDefinition.description,
+        dataViewModel.characterViewModel.value.strainDefinition.description,
+      ];
+    });
+  }
+
+  Widget _buildCurrentPage() {
+    switch (currentIndex) {
+      case 0:
+        return HomePage(
+          dataViewModel: dataViewModel,
+          updateIndex: updateIndex,
+        );
+      case 1:
+        return CreatedCharactersPage(
+          charactersList: charactersList,
+          dataViewModel: dataViewModel,
+          updateIndex: updateIndex,
+        );
+      case 2:
+        return CharacterSheetPage(
+          dataViewModel: dataViewModel,
+          updateIndex: updateIndex,
+          updateStep: updateStep,
+          setEditingOptions: setEditingOptions,
+        );
+      case 3:
+      default:
+        return CharacterCreationPage(
+          dataViewModel: dataViewModel,
+          updateIndex: updateIndex,
+          charactersList: charactersList,
+          currentStep: currentStep,
+          updateStep: updateStep,
+          optionSelected: optionSelected,
+          descriptionList: descriptionList,
+          resetInnerDescriptions: resetInnerDescriptions,
+          updateDescription: updateDescription,
+          updateOptionSelected: updateOptionSelected,
+          resetOptions: resetOptions,
+        );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: ValueListenableBuilder<Color>(
-        // Escuta a propriedade que pertence ao ViewModel
         valueListenable: dataViewModel.themeViewColor,
         builder: (context, color, child) {
           return AnimatedContainer(
@@ -67,8 +155,8 @@ class _NavigatorStartState extends State<NavigatorStart> {
         },
         child: Center(
           child: Padding(
-            padding: EdgeInsetsGeometry.symmetric(vertical: 12),
-            child: _pages.elementAt(currentIndex),
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            child: _buildCurrentPage(), // 3. Usa a chamada dinâmica
           ),
         ),
       ),

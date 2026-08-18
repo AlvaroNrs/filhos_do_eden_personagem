@@ -28,7 +28,7 @@ class TypeSelector extends StatelessWidget {
                 onPressed: () {
                   updateDescription(1, type.description);
                   if(dataViewModel.characterViewModel.value.type != type.type && upperSelection) updateOptionSelected(2);
-                  dataViewModel.changeCharacter("", null, type.type, null);
+                  dataViewModel.changeCharacter(null, "", null, type.type, null);
                   if (!selected) updateOptionSelected(1);
                 },
                 icon: CircleAvatar(

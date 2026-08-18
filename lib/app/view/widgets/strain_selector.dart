@@ -22,7 +22,7 @@ class StrainSelector extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         updateDescription(2, strainDefinition.description);
-        dataViewModel.changeCharacter("", null, null, strainDefinition.strain);
+        dataViewModel.changeCharacter(null, "", null, null, strainDefinition.strain);
         if(!selected) updateOptionSelected(2);
       },
       child: Row(
