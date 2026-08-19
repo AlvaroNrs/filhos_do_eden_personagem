@@ -9,14 +9,16 @@ class CreatedCharactersPage extends StatefulWidget {
   final List<Character> charactersList;
   final DataViewModel dataViewModel;
   final Function(int i) updateIndex;
+  final Function(Character c) removeCharacter;
   const CreatedCharactersPage({super.key, required this.charactersList,
-    required this.dataViewModel, required this.updateIndex});
+    required this.dataViewModel, required this.updateIndex, required this.removeCharacter});
 
   @override
   State<CreatedCharactersPage> createState() => _CreatedCharactersPageState();
 }
 
 class _CreatedCharactersPageState extends State<CreatedCharactersPage> {
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,19 +34,32 @@ class _CreatedCharactersPageState extends State<CreatedCharactersPage> {
               fontFamily: 'Eremaeus'
             ),
           ),
-          Expanded(
+          if(widget.charactersList.isNotEmpty) Expanded(
             child: ListView.builder(
               itemCount: widget.charactersList.length,
               itemBuilder: (context, index) {
                 Character model = widget.charactersList[index];
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 4.0),
-                  child: CharacterListTile(character: model,  
-                    dataViewModel: widget.dataViewModel, updateIndex: widget.updateIndex),
-                );
-              },
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 4.0),
+                    child: CharacterListTile(character: model, removeCharacter: widget.removeCharacter,
+                      dataViewModel: widget.dataViewModel, updateIndex: widget.updateIndex),
+                  );
+                },
+              ),
             ),
-          ),
+          if(widget.charactersList.isEmpty) Expanded(
+            child: Center(
+              child: Text(
+                "Sem Pesonagens criados.\n\nSeus Personagens criados aparecerão aqui",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: AppColors.darkBrown,
+                  fontFamily: "Belleza",
+                  fontSize: 25
+                ),
+              ),
+            )
+          ), 
           CustomTextButton(text: "Voltar", onPressed: (){widget.updateIndex(0);}),
         ]
       ),

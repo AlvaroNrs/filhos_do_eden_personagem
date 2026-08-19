@@ -32,7 +32,7 @@ class DataViewModel extends ChangeNotifier {
   }
 
   ValueNotifier<Character> generateNew(){
-    return ValueNotifier<Character>(Character(id: Uuid().v1(), name: "", side: LightAndDarkness.light,
+    return ValueNotifier<Character>(Character(id: Uuid().v1(), name: "", side: LightAndDarkness.neutral,
       type: null, selectedStrain: null),);
   }
 }

@@ -13,6 +13,7 @@ import 'package:filhos_do_eden_personagem/app/view/widgets/strain_selector.dart'
 import 'package:filhos_do_eden_personagem/app/view/widgets/type_selector.dart';
 import 'package:filhos_do_eden_personagem/app/view_model/data_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CharacterCreationPage extends StatefulWidget {
   final int currentStep;
@@ -88,7 +89,7 @@ class _CharacterCreationPageState extends State<CharacterCreationPage> {
 
   @override
   void didChangeDependencies() {
-    _nameController.text = widget.dataViewModel.characterViewModel.value.name;
+    _nameController.text = widget.dataViewModel.characterViewModel.value.name.toUpperCase();
     super.didChangeDependencies();
   }
 
@@ -309,13 +310,22 @@ class _CharacterCreationPageState extends State<CharacterCreationPage> {
                       selectionColor: AppColors.darkBrown,
                     ),
                     child: TextFormField(
+                      textCapitalization: TextCapitalization.characters,
+                      inputFormatters: [
+                        TextInputFormatter.withFunction(
+                          (oldValue, newValue) => TextEditingValue(
+                            text: newValue.text.toUpperCase(),
+                            selection: newValue.selection,
+                          ),
+                        ),
+                      ],
                       controller: _nameController,
                       scrollPadding: const EdgeInsets.only(bottom: 120),
                       onChanged: (value) => updateCharacterName(),
                       cursorColor: AppColors.darkBrown,
                       keyboardType: TextInputType.name,
                       style: const TextStyle(
-                        fontFamily: "Belleza",
+                        fontFamily: "Eremaeus",
                         fontSize: 20,
                       ),
                       decoration: _buildInputDecoration("Nome".toUpperCase()),
@@ -455,7 +465,7 @@ InputDecoration _buildInputDecoration(String label) {
       ),
       floatingLabelStyle: TextStyle(
         color: AppColors.darkBrown,
-        fontFamily: "Belleza",
+        fontFamily: "Eremaeus",
         fontWeight: FontWeight.bold,
       ),
       focusedBorder: const UnderlineInputBorder(

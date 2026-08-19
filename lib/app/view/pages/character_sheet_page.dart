@@ -201,14 +201,16 @@ class SheetSectionDetail extends StatelessWidget {
                         ? AppColors.darkCelestialThemeColor 
                         : AppColors.darkInfernalThemeColor,
                   ),
-                  Text(
-                    list[index],
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: AppColors.darkBrown,
-                      fontFamily: 'Belleza',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500
+                  Expanded(
+                    child: Text(
+                      list[index],
+                      textAlign: TextAlign.start,
+                      style: const TextStyle(
+                        color: AppColors.darkBrown,
+                        fontFamily: 'Belleza',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500
+                      ),
                     ),
                   ),
                 ],

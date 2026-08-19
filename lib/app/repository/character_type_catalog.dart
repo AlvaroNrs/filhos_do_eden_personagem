@@ -103,7 +103,7 @@ abstract class CharacterTypeCatalog {
       ],
       startPowers: [Power.companheiroAnimal, Power.conjurarElementos, Power.controleGravitacional,
       Power.gravitacao, Power.infravisao, Power.neblina ],
-      benefits: ['(Um entre) Controle de temperatura / Corpo deslizante / Afinidade com a terra ou Atmosfera particular'],
+      benefits: ['(Um entre) Controle de temperatura / Corpo deslizante / Afinidade com a terra / Atmosfera particular'],
       typeIconAssetPath: 'assets/sheet/celestials/ishins/ishins.png',
     ),
 
@@ -218,7 +218,7 @@ abstract class CharacterTypeCatalog {
       ],
       startPowers: [Power.armaDedicada, Power.controlarOTecido, Power.escuridao, Power.infravisao, Power.servoInvisivel,
       Power.sussuroDosMortos],
-      benefits: ['(Um entre) Controle de temperatura / Corpo deslizante / Afinidade com a terra ou Atmosfera particular'],
+      benefits: ['(Um entre) Controle de temperatura / Corpo deslizante / Afinidade com a terra / Atmosfera particular'],
       typeIconAssetPath: 'assets/sheet/infernals/zanathus/zanathus.png'
     ),
 

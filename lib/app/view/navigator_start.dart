@@ -92,18 +92,27 @@ class _NavigatorStartState extends State<NavigatorStart> {
     });
   }
 
+  void removeCharacter(Character c){
+    setState(() {
+      charactersList.remove(c);
+    });
+  }
+
   Widget _buildCurrentPage() {
     switch (currentIndex) {
       case 0:
         return HomePage(
           dataViewModel: dataViewModel,
           updateIndex: updateIndex,
+          updateStep: updateStep,
+          resetOptions: resetOptions
         );
       case 1:
         return CreatedCharactersPage(
           charactersList: charactersList,
           dataViewModel: dataViewModel,
           updateIndex: updateIndex,
+          removeCharacter: removeCharacter,
         );
       case 2:
         return CharacterSheetPage(

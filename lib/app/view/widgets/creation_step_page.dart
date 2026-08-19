@@ -1,4 +1,6 @@
+import 'package:filhos_do_eden_personagem/app/component/character_creation_snackbar.dart';
 import 'package:filhos_do_eden_personagem/app/model/character.dart';
+import 'package:filhos_do_eden_personagem/app/shared/enums/light_and_darkness.dart';
 import 'package:filhos_do_eden_personagem/app/view/styles/app_colors.dart';
 import 'package:filhos_do_eden_personagem/app/view/widgets/buttons/custom_text_button.dart';
 import 'package:filhos_do_eden_personagem/app/view/widgets/creation_stage_bar.dart';
@@ -119,10 +121,19 @@ class CreationStepPage extends StatelessWidget {
                       if(charactersList.any((c) => c.id == dataViewModel.characterViewModel.value.id)){
                         indexWhere = charactersList.indexWhere((c) => c.id == dataViewModel.characterViewModel.value.id);
                         charactersList[indexWhere] = dataViewModel.characterViewModel.value;
+                        showSnackBar(context: context, mensagem: "Dados do Personagem Salvos",
+                        iconPath: dataViewModel.characterViewModel.value.side == LightAndDarkness
+                        .light ? "assets/celestial_not.png" : "assets/infernal_not.png",
+                        backgroundColor: dataViewModel.characterViewModel.value.side == LightAndDarkness
+                        .light ? AppColors.darkCelestialThemeColor : AppColors.darkInfernalThemeColor);
                       } else {
                         charactersList.add(dataViewModel.characterViewModel.value);
+                        showSnackBar(context: context, mensagem: "Novo Personagem Criado",
+                        iconPath: dataViewModel.characterViewModel.value.side == LightAndDarkness
+                        .light ? "assets/celestial_not.png" : "assets/infernal_not.png",
+                        backgroundColor: dataViewModel.characterViewModel.value.side == LightAndDarkness
+                        .light ? AppColors.darkCelestialThemeColor : AppColors.darkInfernalThemeColor);
                       }
-                      //TO-DO: Lançar msg de personagem adicionado
                       updateIndex(2);
                     }
                   },

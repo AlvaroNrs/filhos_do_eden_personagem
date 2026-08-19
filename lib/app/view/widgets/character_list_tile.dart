@@ -1,3 +1,4 @@
+import 'package:filhos_do_eden_personagem/app/component/character_creation_snackbar.dart';
 import 'package:filhos_do_eden_personagem/app/model/character.dart';
 import 'package:filhos_do_eden_personagem/app/shared/enums/light_and_darkness.dart';
 import 'package:filhos_do_eden_personagem/app/view/styles/app_colors.dart';
@@ -7,8 +8,10 @@ import 'package:flutter/material.dart';
 class CharacterListTile extends StatelessWidget {
   final Character character;
   final DataViewModel dataViewModel;
+  final Function(Character c) removeCharacter;
   final Function(int i) updateIndex;
-  const CharacterListTile({super.key, required this.character, required this.dataViewModel, required this.updateIndex});
+  const CharacterListTile({super.key, required this.character, required this.dataViewModel, required this.updateIndex, 
+    required this.removeCharacter});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,7 @@ class CharacterListTile extends StatelessWidget {
           )
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           spacing: 15,
           children: [
             Padding(
@@ -97,10 +100,19 @@ class CharacterListTile extends StatelessWidget {
                           ),
                         ),  
                       ],
-                    )
+                    ),
                   ],
-                )
+                ),
             ),
+            IconButton(
+              onPressed: () {
+                removeCharacter(character);
+                showSnackBar(context: context, mensagem: "Personagem Removido",
+                  iconPath: character.side == LightAndDarkness.light ? "assets/celestial_not.png" : "assets/infernal_not.png",
+                  backgroundColor: AppColors.darkBrown);
+                },
+              icon: const Icon(Icons.delete, color: AppColors.darkBrown, size: 30),
+            )
           ],
         ),
       ),
