@@ -302,15 +302,24 @@ class _CharacterCreationPageState extends State<CharacterCreationPage> {
                 spacing: 20,
                 children: [
                   SizedBox(height: 10,),
-                  TextFormField(
-                    controller: _nameController,
-                    scrollPadding: const EdgeInsets.only(bottom: 120),
-                    onChanged: (value) => updateCharacterName(),
-                    style: const TextStyle(
-                      fontFamily: "Belleza",
-                      fontSize: 20,
+                  TextSelectionTheme(
+                    data: const TextSelectionThemeData(
+                      cursorColor: AppColors.darkBrown,          // Cor da barra vertical
+                      selectionHandleColor: AppColors.darkBrown, // Cor da "gota" / marcador
+                      selectionColor: AppColors.darkBrown,
                     ),
-                    decoration: _buildInputDecoration("Nome".toUpperCase()),
+                    child: TextFormField(
+                      controller: _nameController,
+                      scrollPadding: const EdgeInsets.only(bottom: 120),
+                      onChanged: (value) => updateCharacterName(),
+                      cursorColor: AppColors.darkBrown,
+                      keyboardType: TextInputType.name,
+                      style: const TextStyle(
+                        fontFamily: "Belleza",
+                        fontSize: 20,
+                      ),
+                      decoration: _buildInputDecoration("Nome".toUpperCase()),
+                    ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -436,7 +445,6 @@ class _CharacterCreationPageState extends State<CharacterCreationPage> {
 InputDecoration _buildInputDecoration(String label) {
     return InputDecoration(
       labelText: label,
-      isDense: true,
       contentPadding: const EdgeInsets.symmetric(
         vertical: -1,   // Quanto menor, mais próximo da linha inferior
         horizontal: 0,

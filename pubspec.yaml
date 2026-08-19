@@ -39,6 +39,7 @@ dependencies:
   flutter_svg: ^2.3.0
   uuid: ^4.6.0
   diacritic: ^0.1.6
+  flutter_native_splash: ^2.4.8
 
 dev_dependencies:
   flutter_test:
@@ -92,6 +93,8 @@ flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/app_icon.png" # Ajuste para o nome real do seu arquivo
+  # Depois, rodar: dart run flutter_launcher_icons
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
@@ -122,3 +125,16 @@ flutter_launcher_icons:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+  
+flutter_native_splash:
+  #! FOR ALL PLATFORM, except Android 12+:
+  color: "#271d20"  ##====================================[REQUIRED]==========
+  icon_background_color: "#271d20"
+  fullscreen: true                # default false
+  
+  #! ANDROID 12+ configuration:
+  android_12:
+    color: "#271d20"
+    icon_background_color: "#271d20"
+
+  # After changing, run: dart run flutter_native_splash:create
