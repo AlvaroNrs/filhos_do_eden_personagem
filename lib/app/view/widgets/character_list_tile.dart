@@ -63,11 +63,11 @@ class CharacterListTile extends StatelessWidget {
                       spacing: 5,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(character.name.toUpperCase(),
+                        Text(character.name.substring(0, character.name.length.clamp(0, 12)).toUpperCase(),
                           style: TextStyle(
                             color: AppColors.darkBrown,
                             fontFamily: 'Eremaeus',
-                            fontSize: 22,
+                            fontSize: 20,
                           ),
                         ),  
                         Row(
@@ -83,7 +83,7 @@ class CharacterListTile extends StatelessWidget {
                                 height: 35,
                               ),
                             ),
-                            Text(character.type!.name.toUpperCase(),
+                            Text(character.classDefinition.name.toUpperCase(),
                               style: TextStyle(
                                 color: AppColors.darkBrown,
                                 fontFamily: 'Eremaeus',

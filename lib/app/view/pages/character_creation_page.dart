@@ -320,6 +320,7 @@ class _CharacterCreationPageState extends State<CharacterCreationPage> {
                         ),
                       ],
                       controller: _nameController,
+                      maxLength: 14,
                       scrollPadding: const EdgeInsets.only(bottom: 120),
                       onChanged: (value) => updateCharacterName(),
                       cursorColor: AppColors.darkBrown,

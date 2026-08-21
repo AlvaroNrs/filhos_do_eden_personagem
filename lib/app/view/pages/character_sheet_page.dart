@@ -34,11 +34,11 @@ class _CharacterSheetPageState extends State<CharacterSheetPage> {
         spacing: 10,
         children: [
           Text(
-            widget.dataViewModel.characterViewModel.value.name.toUpperCase(),
+            widget.dataViewModel.characterViewModel.value.name.toUpperCase().substring(0, 13),
             textAlign: TextAlign.center,
             style: const TextStyle(
               color: AppColors.darkBrown,
-              fontSize: 26,
+              fontSize: 24,
               fontFamily: 'Eremaeus',
             ),
           ),
@@ -56,7 +56,7 @@ class _CharacterSheetPageState extends State<CharacterSheetPage> {
                 ),
               ),
               Text(
-                widget.dataViewModel.characterViewModel.value.type!.name.toUpperCase(),
+                widget.dataViewModel.characterViewModel.value.classDefinition.name.toUpperCase(),
                 style: const TextStyle(
                   color: AppColors.darkBrown,
                   fontFamily: 'Eremaeus',
