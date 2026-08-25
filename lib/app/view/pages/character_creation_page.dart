@@ -119,12 +119,15 @@ class _CharacterCreationPageState extends State<CharacterCreationPage> {
           IconButton(
             iconSize: 160,
             onPressed: () {
-                updateDetailColor(AppColors.darkCelestialThemeColor);
-                if(widget.dataViewModel.characterViewModel.value.side == LightAndDarkness.darkness) widget.resetInnerDescriptions();
-                widget.dataViewModel.changeCharacter(null, "", LightAndDarkness.light, null, null);
-                widget.dataViewModel.changeThemeColor(LightAndDarkness.light);
-                widget.updateDescription(0, widget.dataViewModel.characterViewModel.value.sideDefinition.description);
-                if(!widget.optionSelected[0]) widget.updateOptionSelected(0);
+              updateDetailColor(AppColors.darkCelestialThemeColor);
+              if(widget.dataViewModel.characterViewModel.value.side == LightAndDarkness.darkness) {
+                widget.resetInnerDescriptions();
+                widget.dataViewModel.setNullDetailCharacter();
+              }
+              widget.dataViewModel.changeCharacter(null, "", LightAndDarkness.light, null, null);
+              widget.dataViewModel.changeThemeColor(LightAndDarkness.light);
+              widget.updateDescription(0, widget.dataViewModel.characterViewModel.value.sideDefinition.description);
+              if(!widget.optionSelected[0]) widget.updateOptionSelected(0);
             },
             icon: CircleAvatar(
               radius: 80,
@@ -165,7 +168,10 @@ class _CharacterCreationPageState extends State<CharacterCreationPage> {
                 iconSize: 160,
                 onPressed: () {
                   updateDetailColor(AppColors.darkInfernalThemeColor);
-                  if(widget.dataViewModel.characterViewModel.value.side == LightAndDarkness.light) widget.resetInnerDescriptions();
+                  if(widget.dataViewModel.characterViewModel.value.side == LightAndDarkness.light) {
+                    widget.resetInnerDescriptions();
+                    widget.dataViewModel.setNullDetailCharacter();
+                  }
                   widget.dataViewModel.changeCharacter(null, "", LightAndDarkness.darkness, null, null);
                   widget.dataViewModel.changeThemeColor(LightAndDarkness.darkness);
                   widget.updateDescription(0, widget.dataViewModel.characterViewModel.value.sideDefinition.description);

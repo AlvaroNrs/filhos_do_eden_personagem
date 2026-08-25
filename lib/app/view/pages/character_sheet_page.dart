@@ -34,7 +34,8 @@ class _CharacterSheetPageState extends State<CharacterSheetPage> {
         spacing: 10,
         children: [
           Text(
-            widget.dataViewModel.characterViewModel.value.name.toUpperCase().substring(0, 13),
+            widget.dataViewModel.characterViewModel.value.name.substring(0, 
+              widget.dataViewModel.characterViewModel.value.name.length.clamp(0, 12)).toUpperCase(),
             textAlign: TextAlign.center,
             style: const TextStyle(
               color: AppColors.darkBrown,

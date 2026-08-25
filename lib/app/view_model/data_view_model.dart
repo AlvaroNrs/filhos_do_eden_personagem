@@ -26,6 +26,13 @@ class DataViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setNullDetailCharacter(){
+    characterViewModel.value.type = null;
+    characterViewModel.value.selectedStrain = null;
+    characterViewModel.value.name = "";
+    notifyListeners();
+  }
+
   void resetGeneratedCharacter(){
     characterViewModel = generateNew();
     notifyListeners();

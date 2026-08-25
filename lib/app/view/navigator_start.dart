@@ -78,6 +78,7 @@ class _NavigatorStartState extends State<NavigatorStart> {
     setState(() {
       descriptionList[1] = "";
       descriptionList[2] = "";
+      optionSelected = [optionSelected[0], false, false];
     });
   }
 
